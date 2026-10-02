@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Protocolo 30 Dias Sem Errar — Thaise Lourrane</title>
+<meta name="description" content="O passo a passo para quem está começando (ou recomeçando) na academia: 5 treinos prontos, organizados semana a semana, criados por uma personal com CREF."/>
+<meta property="og:title" content="Protocolo 30 Dias Sem Errar"/>
+<meta property="og:description" content="Pare de chegar na academia sem saber o que fazer. 30 dias de treino pronto, do primeiro ao último dia."/>
+<meta property="og:image" content="logo.png"/>
+<link rel="icon" href="logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+
+<!-- META PIXEL: troque SEU_PIXEL_ID pelo ID do pixel e apague esta linha e a linha "FIM META PIXEL" para ativar
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','SEU_PIXEL_ID');fbq('track','PageView');
+document.addEventListener('click',function(ev){var a=ev.target.closest('a[href*="kiwify"]');if(a)fbq('track','InitiateCheckout');});
+</script>
+FIM META PIXEL -->
+
+<style>
+:root{
+  --orange:#F05A1A; --orange-light:#FF7A3D;
+  --black:#0A0A0A; --dark:#111; --dark2:#181818; --line:#222;
+  --text:#F5F5F5; --muted:#A3A3A3; --dim:#6B6B6B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+header{display:flex;justify-content:center;padding:10px 16px;border-bottom:1px solid var(--line);background:rgba(10,10,10,.92);backdrop-filter:blur(8px);position:sticky;top:0;z-index:100}
+header img{height:56px;width:56px;object-fit:contain}
+
+.wrap{max-width:680px;margin:0 auto}
+.section{padding:80px 20px}
+.alt{background:var(--dark2);border-top:1px solid #1e1e1e;border-bottom:1px solid #1e1e1e}
+.tag{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+h2{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,10vw,62px);line-height:1;margin-bottom:28px}
+h2 span,h1 span{color:var(--orange)}
+.lead{font-size:18px;color:var(--muted);margin-bottom:28px}
+.lead strong{color:var(--text)}
+
+/* HERO */
+.hero{min-height:92svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:72px 20px 56px;background:radial-gradient(ellipse 80% 60% at 50% 0%,#2a1000 0%,var(--black) 70%)}
+.badge{display:inline-block;background:rgba(240,90,26,.15);border:1px solid rgba(240,90,26,.4);color:var(--orange-light);font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:7px 16px;border-radius:2px;margin-bottom:24px}
+.hero-q{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(22px,5.5vw,30px);text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(64px,17vw,124px);line-height:.9;margin-bottom:22px}
+.hero-sub{font-size:clamp(17px,4.2vw,20px);color:var(--muted);max-width:540px;margin-bottom:36px}
+.hero-sub strong{color:var(--text)}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:18px 40px;border-radius:6px;box-shadow:0 0 40px rgba(240,90,26,.35);transition:background .2s,transform .2s}
+.btn:hover{background:var(--orange-light);transform:translateY(-2px)}
+.btn-note{margin-top:14px;font-size:14px;color:var(--dim)}
+.stats{display:flex;gap:40px;margin-top:52px;justify-content:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:46px;color:var(--orange);line-height:1}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:4px}
+
+/* CENA */
+.scene{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.scene p{background:var(--black);border-left:3px solid #333;padding:14px 18px;font-size:17px;color:#ccc}
+.punch{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,6vw,34px);text-transform:uppercase;line-height:1.15}
+.punch span{color:var(--orange)}
+
+/* LISTAS */
+.check{list-style:none;display:flex;flex-direction:column;gap:14px}
+.check li{display:flex;gap:14px;font-size:17px;font-weight:500;color:#ddd}
+.check li::before{content:'✓';flex:0 0 26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.check.no li::before{content:'✕';background:#2a2a2a;color:#888}
+.check.no li{color:var(--muted)}
+.sub-h{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;margin:40px 0 18px}
+
+/* SEMANA */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:36px}
+.day{background:var(--black);border:1px solid var(--line);border-radius:6px;padding:10px 4px;text-align:center}
+.day b{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.day span{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--orange);line-height:1}
+.day small{display:block;font-size:10px;color:var(--muted);margin-top:4px;line-height:1.2}
+.day.off span{color:#444}
+.steps{display:flex;flex-direction:column;gap:1px}
+.step{background:var(--black);border:1px solid #1e1e1e;padding:22px;display:flex;gap:18px}
+.step-n{font-family:'Bebas Neue',sans-serif;font-size:40px;color:rgba(240,90,26,.45);line-height:1;min-width:44px}
+.step h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:21px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.step p{font-size:15px;color:var(--muted)}
+
+/* ERROS */
+.errors{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{background:var(--dark2);border:1px solid var(--line);border-radius:8px;padding:16px}
+.err b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:28px;color:var(--orange);line-height:1}
+.err p{font-size:15px;font-weight:600;color:#ddd;margin-top:4px}
+
+/* MÓDULOS */
+.modules{display:flex;flex-direction:column;gap:12px}
+.module{background:var(--black);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.module summary{list-style:none;cursor:pointer;padding:20px;display:flex;align-items:center;gap:16px}
+.module summary::-webkit-details-marker{display:none}
+.m-icon{font-size:28px;min-width:36px;text-align:center}
+.m-info{flex:1}
+.m-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange)}
+.m-title{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:900;text-transform:uppercase;line-height:1.1}
+.m-count{font-size:12px;color:var(--dim);font-weight:700;white-space:nowrap}
+.module summary::after{content:'+';color:var(--orange);font-size:24px;transition:transform .2s}
+.module[open] summary::after{transform:rotate(45deg)}
+.module ol{padding:0 20px 20px 72px;color:var(--muted);font-size:15px;display:flex;flex-direction:column;gap:6px}
+
+/* SOBRE */
+.about{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:end;background:var(--dark2);border:1px solid #1e1e1e;border-radius:10px;overflow:hidden;padding:28px 28px 0}
+.about img{width:200px;height:auto;align-self:end}
+.about-txt{padding-bottom:28px}
+.about-name{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--orange);line-height:1}
+.about-cred{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin:4px 0 16px}
+.about-txt p{font-size:16px;color:var(--muted);margin-bottom:12px}
+.about-txt strong{color:var(--text)}
+
+/* PREÇO */
+.price-sec{background:radial-gradient(ellipse 80% 60% at 50% 100%,#1a0800 0%,var(--black) 70%);text-align:center}
+.price-card{background:var(--dark2);border:2px solid var(--orange);border-radius:14px;padding:44px 28px 32px;position:relative;box-shadow:0 0 80px rgba(240,90,26,.15);max-width:520px;margin:0 auto}
+.price-top{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 18px;border-radius:2px;white-space:nowrap}
+.price-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--muted);letter-spacing:1px}
+.price-inst{font-size:18px;color:var(--muted);margin-top:14px}
+.price-value{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;color:var(--text)}
+.price-value sup{font-size:36px;color:var(--orange);vertical-align:super}
+.price-cash{font-size:15px;color:var(--muted);margin-bottom:28px}
+.price-card .check{text-align:left;margin-bottom:32px}
+.price-card .check li{font-size:16px}
+.price-card .btn{display:block;width:100%;padding:20px 16px}
+.guarantee{display:flex;gap:14px;align-items:center;text-align:left;margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.guarantee-seal{flex:0 0 64px;height:64px;border-radius:50%;border:2px solid var(--orange);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;color:var(--orange);line-height:.9}
+.guarantee-seal b{font-size:28px;font-weight:400}
+.guarantee-seal small{font-size:12px}
+.guarantee p{font-size:14px;color:var(--muted)}
+.guarantee strong{color:var(--text)}
+
+/* FAQ */
+.faq{display:flex;flex-direction:column;gap:1px}
+.faq details{background:var(--black);border:1px solid #1e1e1e}
+.faq summary{list-style:none;cursor:pointer;padding:20px 22px;font-size:16px;font-weight:700;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--orange);font-size:22px;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 22px 20px;font-size:15px;color:var(--muted)}
+
+.final{text-align:center;padding:88px 20px}
+.final p{font-size:18px;color:var(--muted);margin:-8px 0 36px}
+
+footer{padding:28px 20px;text-align:center;border-top:1px solid #1a1a1a;font-size:12px;color:#555;line-height:1.9}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:560px){
+  .section{padding:64px 16px}
+  .badge{font-size:11px;letter-spacing:1.5px;padding:7px 12px}
+  .stats{gap:26px}
+  .week{grid-template-columns:repeat(4,1fr)}
+  .errors{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;padding:24px 20px 0;text-align:center}
+  .about img{width:180px;margin:0 auto;order:2}
+  .about-txt{padding-bottom:4px}
+  .module ol{padding-left:40px}
+  .price-value{font-size:80px}
+}
+</style>
+</head>
+<body>
+
+<header><img src="logo.png" alt="Thaise Lourrane — Personal Trainer"/></header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Para iniciantes • Academia • Passo a passo</div>
+  <p class="hero-q">Chega na academia e não sabe o que fazer?</p>
+  <h1>PROTOCOLO<br/><span>30 DIAS</span><br/>SEM ERRAR</h1>
+  <p class="hero-sub">5 treinos prontos, organizados dia a dia, para você <strong>parar de improvisar, treinar do jeito certo e finalmente criar constância</strong> — sem treinos extremos e sem complicação.</p>
+  <a href="#preco" class="btn">Quero meu passo a passo</a>
+  <p class="btn-note">R$ 97 • pagamento único • garantia de 7 dias</p>
+  <div class="stats">
+    <div><div class="stat-num">30</div><div class="stat-label">Dias</div></div>
+    <div><div class="stat-num">5</div><div class="stat-label">Treinos</div></div>
+    <div><div class="stat-num">16</div><div class="stat-label">Aulas</div></div>
+  </div>
+</section>
+
+<!-- A CENA -->
+<section class="section alt">
+  <div class="wrap reveal">
+    <div class="tag">Você conhece essa cena?</div>
+    <h2>A ACADEMIA NÃO É<br/>O <span>PROBLEMA</span></h2>
+    <div class="scene">
+      <p>Você chega, olha os aparelhos e não sabe por onde começar.</p>
+      <p>Copia o exercício de alguém, faz umas séries sem saber se a carga está certa…</p>
+      <p>…e vai embora sem ter certeza se aquilo serviu para alguma coisa.</p>
+      <p>Algumas semanas depois, sem ver evolução, a vontade de ir some.</p>
+    </div>
+    <p class="punch">O problema não é você.<br/>É treinar <span>sem um plano.</span></p>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="tag">Para quem é</div>
+    <h2>FEITO PARA <span>VOCÊ</span><br/>QUE ESTÁ COMEÇANDO</h2>
+    <ul class="check">
+      <li>Está começando (ou voltando) para a academia e fica perdida lá dentro</li>
+      <li>Treina sem saber se está fazendo do jeito certo</li>
+      <li>Já começou outras vezes, mas desistiu nas primeiras semanas</li>
+      <li>Quer cuidar do corpo sem virar refém de dietas e treinos extremos</li>
+      <li>Precisa de um plano com começo, meio e fim</li>
+    </ul>
+    <p class="sub-h">Não é para você se…</p>
+    <ul class="check no">
+      <li>Procura uma fórmula milagrosa ou resultado sem esforço</li>
+      <li>Quer treinar em casa — os treinos usam equipamentos de academia</li>
+      <li>Procura uma dieta individual — para isso, o ideal é um nutricionista</li>
+    </ul>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section alt">
+  <div class="wrap reveal">
+    <div class="tag">Como funciona</div>
+    <h2>SUA SEMANA<br/><span>JÁ ESTÁ PRONTA</span></h2>
+    <p class="lead">Você abre o treino do dia e segue. <strong>Exercício, séries, repetições e descanso</strong> — tudo definido.</p>
+    <div class="week">
+      <div class="day"><b>Seg</b><span>T1</span><small>Inferiores + cardio</small></div>
+      <div class="day"><b>Ter</b><span>T2</span><small>Superiores + cardio</small></div>
+      <div class="day"><b>Qua</b><span>T3</span><small>Inferiores + cardio</small></div>
+      <div class="day"><b>Qui</b><span>T4</span><small>Superiores + cardio</small></div>
+      <div class="day"><b>Sex</b><span>T5</span><small>Inferiores + cardio</small></div>
+      <div class="day"><b>Sáb</b><span>🚶</span><small>Caminhada leve</small></div>
+      <div class="day off"><b>Dom</b><span>—</span><small>Descanso</small></div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-n">S1</div><div><h3>Semana 1 — Aprender o caminho</h3><p>Cargas leves e foco total na execução. Você conhece os aparelhos e aprende cada movimento com segurança.</p></div></div>
+      <div class="step"><div class="step-n">S2</div><div><h3>Semana 2 — Ganhar ritmo</h3><p>Os treinos viram rotina. Você para de improvisar e começa a registrar sua evolução.</p></div></div>
+      <div class="step"><div class="step-n">S3</div><div><h3>Semana 3 — Progredir</h3><p>Com a técnica no lugar, é hora de aumentar a carga aos poucos — sem pular etapas.</p></div></div>
+      <div class="step"><div class="step-n">S4</div><div><h3>Semana 4 — Consolidar</h3><p>Você fecha os 30 dias com constância, confiança e um treino que sabe fazer sozinha.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 ERROS -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="tag">Por que "sem errar"</div>
+    <h2>OS <span>7 ERROS</span> QUE TRAVAM<br/>QUEM ESTÁ COMEÇANDO</h2>
+    <p class="lead">O protocolo foi montado para eliminar cada um deles:</p>
+    <div class="errors">
+      <div class="err"><b>01</b><p>Confundir quantidade com resultado</p></div>
+      <div class="err"><b>02</b><p>Treinar sem direção</p></div>
+      <div class="err"><b>03</b><p>Errar na carga</p></div>
+      <div class="err"><b>04</b><p>Ignorar o aquecimento</p></div>
+      <div class="err"><b>05</b><p>Descansar errado entre as séries</p></div>
+      <div class="err"><b>06</b><p>Mudar o treino toda hora</p></div>
+      <div class="err"><b>07</b><p>Treinar e esquecer da alimentação</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section class="section alt">
+  <div class="wrap reveal">
+    <div class="tag">O que você recebe</div>
+    <h2>4 MÓDULOS<br/><span>16 AULAS</span></h2>
+    <div class="modules">
+      <details class="module">
+        <summary><span class="m-icon">🚀</span><span class="m-info"><span class="m-label">Módulo 1</span><br/><span class="m-title">Comece Aqui</span></span><span class="m-count">3 aulas</span></summary>
+        <ol><li>Boas-vindas ao Protocolo</li><li>Como funciona o programa</li><li>Preparação: o que levar e como registrar seus treinos</li></ol>
+      </details>
+      <details class="module">
+        <summary><span class="m-icon">📐</span><span class="m-info"><span class="m-label">Módulo 2</span><br/><span class="m-title">Fundamentos do Método Sem Errar</span></span><span class="m-count">4 aulas</span></summary>
+        <ol><li>Os 3 pilares: estratégia, consistência e simplicidade</li><li>Os 7 erros que você deve evitar</li><li>Carga, descanso, execução e respiração</li><li>Sua organização semanal</li></ol>
+      </details>
+      <details class="module">
+        <summary><span class="m-icon">💪</span><span class="m-info"><span class="m-label">Módulo 3</span><br/><span class="m-title">Treinos do Protocolo</span></span><span class="m-count">5 aulas</span></summary>
+        <ol><li>Treino 1 — Inferiores + cardio</li><li>Treino 2 — Superiores + cardio</li><li>Treino 3 — Glúteos e posterior + cardio</li><li>Treino 4 — Superiores + cardio</li><li>Treino 5 — Inferiores completo + cardio</li></ol>
+      </details>
+      <details class="module">
+        <summary><span class="m-icon">🥗</span><span class="m-info"><span class="m-label">Módulo 4</span><br/><span class="m-title">Hábitos que Potencializam</span></span><span class="m-count">4 aulas</span></summary>
+        <ol><li>Alimentação para quem treina: escolhas simples</li><li>Hidratação</li><li>Sono e recuperação</li><li>Hábitos para não desistir</li></ol>
+      </details>
+    </div>
+    <ul class="check" style="margin-top:28px">
+      <li>Bônus: calendário de 30 dias + ficha de registro de cargas para imprimir</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="tag">Quem criou</div>
+    <h2>QUEM VAI TE<br/><span>GUIAR</span></h2>
+    <div class="about">
+      <img src="thaise.png" alt="Thaise Lourrane, personal trainer" loading="lazy"/>
+      <div class="about-txt">
+        <div class="about-name">Thaise Lourrane</div>
+        <div class="about-cred">Personal Trainer • CREF 003962-G/SE</div>
+        <p>Profissional de Educação Física com foco em emagrecimento e qualidade de vida.</p>
+        <p><strong>Eu mesma já passei por isso.</strong> Sei o que é chegar na academia e não saber por onde começar, treinar sem método e pensar em desistir.</p>
+        <p>O Protocolo 30 Dias Sem Errar é o plano que eu gostaria de ter tido no começo: simples, organizado e feito para você conseguir manter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇO -->
+<section class="section price-sec" id="preco">
+  <div class="wrap reveal">
+    <div class="tag">Acesso completo</div>
+    <h2>COMECE <span>HOJE</span></h2>
+    <div class="price-card">
+      <div class="price-top">Pagamento único</div>
+      <div class="price-name">Protocolo 30 Dias Sem Errar</div>
+      <div class="price-inst">12x de</div>
+      <div class="price-value"><sup>R$</sup>9,64</div>
+      <div class="price-cash">ou R$ 97 à vista</div>
+      <ul class="check">
+        <li>4 módulos com 16 aulas</li>
+        <li>5 treinos completos para academia, com séries, repetições e descanso</li>
+        <li>Plano semana a semana para os 30 dias</li>
+        <li>Calendário + ficha de registro para imprimir</li>
+        <li>Acesso vitalício — repita o protocolo quantas vezes quiser</li>
+        <li>Acesso liberado automaticamente após a confirmação do pagamento</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/q4agY0a" class="btn">Quero começar agora</a>
+      <div class="guarantee">
+        <div class="guarantee-seal"><b>7</b><small>DIAS</small></div>
+        <p><strong>Garantia incondicional de 7 dias.</strong> Entre, conheça os treinos e, se achar que não é para você, peça o reembolso de 100% do valor. Sem perguntas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section alt">
+  <div class="wrap reveal">
+    <div class="tag">Dúvidas frequentes</div>
+    <h2>PERGUNTAS<br/><span>FREQUENTES</span></h2>
+    <div class="faq">
+      <details><summary>Sou iniciante. Consigo seguir?</summary><p>Sim — o protocolo foi pensado justamente para quem está começando ou retomando. A primeira semana é de adaptação, com cargas leves e foco na execução, e cada aula explica o que fazer e como fazer.</p></details>
+      <details><summary>Preciso de academia?</summary><p>Sim. Os treinos usam equipamentos comuns de academia: máquinas, halteres, barra e polias.</p></details>
+      <details><summary>Não consigo ir 5 vezes por semana. E agora?</summary><p>Siga os treinos em sequência (1, 2, 3, 4, 5) nos dias que você puder ir, sem pular nenhum. Se faltar um dia, continue de onde parou. O protocolo vai levar um pouco mais que 30 dias — e tudo bem: constância vale mais que pressa.</p></details>
+      <details><summary>Quanto tempo dura cada treino?</summary><p>De 45 a 60 minutos, já contando aquecimento, musculação e cardio.</p></details>
+      <details><summary>Vou emagrecer em 30 dias?</summary><p>Cada corpo responde de um jeito, por isso não prometemos números. O que o protocolo entrega é o que gera resultado de verdade: treinar do jeito certo, com constância. O emagrecimento é consequência desse processo.</p></details>
+      <details><summary>O protocolo inclui dieta?</summary><p>Não. O módulo 4 traz orientações gerais de alimentação, hidratação e sono para quem treina. Ele não substitui um plano alimentar individual — para isso, procure um nutricionista.</p></details>
+      <details><summary>Como recebo o acesso?</summary><p>Logo após a compra, você vai para uma página com o link da área da aluna. Lá, é só criar sua senha com o mesmo e-mail da compra. No PIX e no cartão, o acesso é liberado em poucos minutos; no boleto, em até 3 dias úteis. Dá para salvar a área da aluna na tela inicial do celular e abrir como um app.</p></details>
+      <details><summary>Por quanto tempo tenho acesso?</summary><p>Para sempre. Você paga uma vez e pode repetir o protocolo quantas vezes quiser.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso pela própria Kiwify e devolvemos 100% do valor pago.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <h2>PARE DE <span>IMPROVISAR</span></h2>
+  <p>Seus próximos 30 dias de treino já estão prontos.</p>
+  <a href="https://pay.kiwify.com.br/q4agY0a" class="btn">Garantir meu acesso — R$ 97</a>
+</section>
+
+<footer>
+  <p>Protocolo 30 Dias Sem Errar — Thaise Lourrane • CREF 003962-G/SE</p>
+  <p>Antes de iniciar qualquer programa de exercícios, consulte um médico. Resultados variam de pessoa para pessoa e dependem da execução e da constância.</p>
+  <p>© 2026 Thaise Lourrane Personal Trainer. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  },{threshold:.1}) : null;
+  document.querySelectorAll('.reveal').forEach(function(el){ io ? io.observe(el) : el.classList.add('visible'); });
+</script>
+</body>
+</html>

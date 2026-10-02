@@ -1,0 +1,13 @@
+# Acessa o Supabase a cada 3 dias para o projeto (plano grátis) não ser pausado por inatividade.
+name: Manter Supabase ativo
+on:
+  schedule:
+    - cron: "0 12 */3 * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sf "https://jixjbgtffzkeypacjyqt.supabase.co/rest/v1/modulos?select=numero&limit=1" \
+            -H "apikey: sb_publishable_oldM9_fV9v0gM2wP3fbLFA_W-SHIUrD" -o /dev/null && echo ok

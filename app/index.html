@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="robots" content="noindex"/>
+<meta name="theme-color" content="#0A0A0A"/>
+<title>Área da Aluna — Protocolo 30 Dias Sem Errar</title>
+<link rel="icon" href="../logo.png"/>
+<link rel="apple-touch-icon" href="../logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<style>
+:root{
+  --orange:#F05A1A;--orange-light:#FF7A3D;--orange-soft:rgba(240,90,26,.12);
+  --black:#0A0A0A;--dark:#121212;--dark2:#181818;--line:#262626;
+  --text:#F5F5F5;--muted:#A3A3A3;--dim:#6B6B6B;--ok:#22C55E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;line-height:1.55;min-height:100svh;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.hidden{display:none!important}
+
+/* TOPO */
+.top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top img{width:40px;height:40px;object-fit:contain}
+.top .brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;flex:1;text-decoration:none}
+.top .brand span{color:var(--orange)}
+.top nav{display:flex;gap:4px}
+.top nav a,.top nav button{font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:6px}
+.top nav a.on{color:var(--text);background:var(--dark2)}
+.top nav a:hover,.top nav button:hover{color:var(--text)}
+
+.demo-bar{background:#3a2a00;color:#ffd27a;font-size:13px;text-align:center;padding:6px 12px}
+
+main{max-width:760px;margin:0 auto;padding:0 16px 80px}
+
+/* LOGIN */
+.login{min-height:calc(100svh - 61px);display:flex;align-items:center;justify-content:center;padding:32px 16px;background:radial-gradient(ellipse 80% 50% at 50% 0%,#2a1000 0%,var(--black) 70%)}
+.login-card{width:100%;max-width:400px;text-align:center}
+.login-card img{width:96px;height:96px;margin:0 auto 12px;display:block}
+.login-card h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:44px;line-height:.95;margin-bottom:6px}
+.login-card h1 span{color:var(--orange)}
+.login-card .sub{color:var(--muted);margin-bottom:24px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--dark2);border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:18px}
+.tabs button{padding:10px;border-radius:7px;font-weight:700;color:var(--muted)}
+.tabs button.on{background:var(--orange);color:#fff}
+form{display:flex;flex-direction:column;gap:12px;text-align:left}
+label{font-size:13px;font-weight:600;color:var(--muted)}
+input{width:100%;margin-top:6px;background:var(--dark2);border:1px solid var(--line);border-radius:8px;padding:14px;font:inherit;font-size:16px;color:var(--text)}
+input:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:transparent}
+.hint{font-size:13px;color:var(--dim)}
+.msg{font-size:14px;border-radius:8px;padding:10px 12px}
+.msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5}
+.msg.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.35);color:#86efac}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;padding:15px 22px;border-radius:8px;transition:background .2s}
+.btn:hover{background:var(--orange-light)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:var(--dark2);border:1px solid var(--line);color:var(--text)}
+.btn.ghost:hover{border-color:var(--orange)}
+.btn.done{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.5);color:#86efac}
+.help{margin-top:22px;font-size:14px;color:var(--dim)}
+.help a{color:var(--orange-light)}
+
+/* INÍCIO */
+.hero{position:relative;margin:0 -16px;padding:32px 16px 0;background:radial-gradient(ellipse 80% 70% at 80% 30%,#2a1000 0%,var(--black) 70%);display:grid;grid-template-columns:1fr 180px;gap:8px;align-items:end;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-txt{padding-bottom:28px}
+.hello{font-size:15px;color:var(--muted);margin-bottom:4px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(46px,11vw,68px);line-height:.9;margin-bottom:16px}
+.hero h1 span{color:var(--orange)}
+.hero img{width:180px;align-self:end}
+.bar{height:10px;background:#262626;border-radius:99px;overflow:hidden;margin:6px 0 6px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--orange-light));border-radius:99px;transition:width .4s}
+.bar-label{font-size:13px;color:var(--muted);margin-bottom:16px}
+.bar-label b{color:var(--text)}
+
+.sec{margin-top:36px}
+.tag{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+h2{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:36px;line-height:1;margin-bottom:16px}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pillar{background:var(--dark2);border:1px solid var(--line);border-radius:10px;padding:14px}
+.pillar b{display:block;font-size:22px;margin-bottom:4px}
+.pillar h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;text-transform:uppercase}
+.pillar p{font-size:13px;color:var(--muted);line-height:1.4}
+
+.cal-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#1f0c00,var(--dark2));border:1px solid rgba(240,90,26,.35);border-radius:12px;padding:16px;text-decoration:none}
+.cal-card .big{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--orange);line-height:1;min-width:64px;text-align:center}
+.cal-card div{flex:1}
+.cal-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;text-transform:uppercase}
+.cal-card p{font-size:14px;color:var(--muted)}
+.cal-card .arrow{color:var(--orange);font-size:22px}
+
+.mods{display:flex;flex-direction:column;gap:12px}
+.mod{background:var(--dark);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.mod summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px}
+.mod summary::-webkit-details-marker{display:none}
+.mod-ic{font-size:26px;width:44px;height:44px;border-radius:10px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;flex:0 0 44px}
+.mod-info{flex:1;min-width:0}
+.mod-label{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange)}
+.mod-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;text-transform:uppercase;line-height:1.1}
+.mod-sub{font-size:13px;color:var(--dim)}
+.mod-count{font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap}
+.mod summary::after{content:'›';font-size:26px;color:var(--orange);transition:transform .2s;line-height:1}
+.mod[open] summary::after{transform:rotate(90deg)}
+.lessons{border-top:1px solid var(--line)}
+.lesson{display:flex;align-items:center;gap:12px;padding:13px 16px;text-decoration:none;border-bottom:1px solid #1c1c1c}
+.lesson:last-child{border-bottom:0}
+.lesson:hover{background:var(--dark2)}
+.chk{flex:0 0 24px;height:24px;border-radius:50%;border:2px solid #3a3a3a;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:transparent}
+.chk.on{background:var(--ok);border-color:var(--ok);color:#06210f}
+.lesson .lt{flex:1;font-size:15px;font-weight:500}
+.lesson small{color:var(--dim);font-size:12px}
+
+/* AULA */
+.crumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:22px 0 10px}
+.crumb a{color:var(--orange-light);text-decoration:none;font-weight:600}
+.lesson-h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,9vw,54px);line-height:.95;margin-bottom:22px}
+.content{display:flex;flex-direction:column;gap:14px;font-size:17px;color:#d4d4d4}
+.content strong{color:var(--text)}
+.note{background:var(--orange-soft);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:14px 16px;font-size:15px;color:#e5e5e5}
+.content ul{padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.tbl table{width:100%;border-collapse:collapse;font-size:14px;min-width:420px}
+.tbl th{background:var(--dark2);text-align:left;padding:10px 12px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.tbl td{padding:10px 12px;border-top:1px solid var(--line)}
+.exs{display:flex;flex-direction:column;gap:10px}
+.ex{display:flex;align-items:center;gap:14px;background:var(--dark2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.ex-n{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--orange);line-height:1;min-width:30px;text-align:center}
+.ex-info{flex:1;min-width:0}
+.ex-name{font-weight:700;font-size:17px;color:var(--text);line-height:1.25}
+.ex-sr{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--orange-light)}
+.ex-alt{font-size:13px;color:var(--muted);line-height:1.35;margin-top:3px}
+.ex-alt b{color:#cfcfcf}
+.ex-vid{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none}
+.ex-vid.off{background:#262626;color:#555;font-size:10px;text-align:center;line-height:1.1;font-weight:700}
+.file{display:flex;align-items:center;gap:12px;background:var(--dark2);border:1px dashed rgba(240,90,26,.5);border-radius:10px;padding:14px;text-decoration:none;font-weight:600}
+.file b{font-size:24px}
+.lesson-actions{margin-top:32px;display:flex;flex-direction:column;gap:12px}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pager a{background:var(--dark);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;font-size:14px;color:var(--muted);line-height:1.3}
+.pager a b{display:block;color:var(--text);font-size:15px}
+.pager a.next{text-align:right}
+.pager a:hover{border-color:var(--orange)}
+
+/* CALENDÁRIO */
+.weeks{display:flex;flex-direction:column;gap:18px}
+.wk h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;text-transform:uppercase;margin-bottom:2px}
+.wk h3 span{color:var(--orange)}
+.wk p{font-size:13px;color:var(--dim);margin-bottom:8px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{background:var(--dark2);border:1px solid var(--line);border-radius:8px;padding:8px 2px;text-align:center;transition:background .15s,border-color .15s}
+.day .wd{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--dim)}
+.day .dn{font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.05}
+.day .tr{font-size:11px;font-weight:700;color:var(--orange-light)}
+.day.rest .tr{color:var(--dim)}
+.day.on{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.55)}
+.day.on .tr{color:#86efac}
+.legend{font-size:13px;color:var(--muted);margin-top:16px;line-height:1.8}
+.legend b{color:var(--orange-light)}
+
+.center{text-align:center;padding:64px 8px}
+.center p{color:var(--muted);margin:10px 0 22px}
+.spinner{width:36px;height:36px;border:3px solid #333;border-top-color:var(--orange);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+footer{text-align:center;font-size:12px;color:#555;padding:28px 16px}
+
+@media(max-width:560px){
+  .hero{grid-template-columns:1fr 120px}
+  .hero img{width:120px}
+  .pillars{grid-template-columns:1fr}
+  .pillar{display:flex;gap:12px;align-items:flex-start}
+  .pillar b{margin:0}
+  .top .brand{font-size:19px}
+  .top nav a,.top nav button{padding:8px 7px;font-size:13px}
+  .days{gap:4px}
+  .day .dn{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="../logo.png" alt="Thaise Lourrane"/>
+  <a class="brand" href="#/">Protocolo <span>30D</span></a>
+  <nav id="nav" class="hidden">
+    <a href="#/" data-r="inicio">Início</a>
+    <a href="#/calendario" data-r="calendario">Calendário</a>
+    <button id="sair">Sair</button>
+  </nav>
+</header>
+<div id="demo" class="demo-bar hidden">Modo demonstração — o app ainda não está ligado ao Supabase (veja config.js)</div>
+
+<div id="app"><div class="center"><div class="spinner"></div></div></div>
+
+<script>
+(function () {
+  var C = window.APP_CONFIG || {};
+  var configurado = C.SUPABASE_URL && C.SUPABASE_URL.indexOf('http') === 0;
+  var $app = document.getElementById('app');
+  var state = { modulos: [], aulas: [], feito: new Set(), nome: '', user: null };
+  var DIAS = ['SEG','TER','QUA','QUI','SEX','SÁB','DOM'];
+  var SEMANA = ['T1','T2','T3','T4','T5','🚶','—'];
+  var INFO = [
+    ['Semana 1','Aprender','2 séries • carga leve • cardio 10–15 min'],
+    ['Semana 2','Ganhar ritmo','3 séries • carga moderada • cardio 15 min'],
+    ['Semana 3','Progredir','3 séries • +1 degrau de carga • cardio 15–20 min'],
+    ['Semana 4','Consolidar','3 séries • carga desafiadora • cardio 20 min'],
+    ['Dias 29–30','Reteste','refaça T1 e T2 e compare com a Semana 1']
+  ];
+
+  /* ---------------- camada de dados ---------------- */
+  var api;
+  if (configurado) {
+    var sb = supabase.createClient(C.SUPABASE_URL, C.SUPABASE_ANON_KEY);
+    api = {
+      sessao: function () { return sb.auth.getSession().then(function (r) { return r.data.session && r.data.session.user; }); },
+      entrar: function (e, s) { return sb.auth.signInWithPassword({ email: e, password: s }).then(chk); },
+      criar: function (e, s) { return sb.auth.signUp({ email: e, password: s }).then(chk); },
+      sair: function () { return sb.auth.signOut(); },
+      conteudo: function () {
+        return Promise.all([
+          sb.from('modulos').select('*').order('numero'),
+          sb.from('aulas').select('*').order('modulo').order('ordem'),
+          sb.from('progresso').select('item'),
+          sb.from('alunas').select('nome').maybeSingle()
+        ]).then(function (r) {
+          r.forEach(function (x) { if (x.error) throw x.error; });
+          return { modulos: r[0].data, aulas: r[1].data, feito: r[2].data.map(function (p) { return p.item; }), nome: r[3].data && r[3].data.nome };
+        });
+      },
+      marcar: function (item, on) {
+        var q = on ? sb.from('progresso').upsert({ user_id: state.user.id, item: item })
+                   : sb.from('progresso').delete().eq('user_id', state.user.id).eq('item', item);
+        return q.then(chk);
+      }
+    };
+  } else {
+    // Modo demonstração: só funciona no computador, com o arquivo supabase/demo-conteudo.js
+    var LS = 'demo-progresso';
+    var ler = function () { try { return JSON.parse(localStorage.getItem(LS)) || []; } catch (e) { return []; } };
+    api = {
+      sessao: function () { return Promise.resolve(sessionStorage.getItem('demo-user') ? { id: 'demo', email: 'demo' } : null); },
+      entrar: function () { sessionStorage.setItem('demo-user', '1'); return Promise.resolve(); },
+      criar: function () { sessionStorage.setItem('demo-user', '1'); return Promise.resolve(); },
+      sair: function () { sessionStorage.removeItem('demo-user'); return Promise.resolve(); },
+      conteudo: function () {
+        return new Promise(function (ok, falha) {
+          var s = document.createElement('script');
+          s.src = '../../supabase/demo-conteudo.js';
+          s.onload = function () { var d = window.DEMO_CONTEUDO; ok({ modulos: d.modulos, aulas: d.aulas, feito: ler(), nome: 'Aluna' }); };
+          s.onerror = function () { falha(new Error('NAO_CONFIGURADO')); };
+          document.head.appendChild(s);
+        });
+      },
+      marcar: function (item, on) {
+        var l = ler().filter(function (x) { return x !== item; });
+        if (on) l.push(item);
+        try { localStorage.setItem(LS, JSON.stringify(l)); } catch (e) {}
+        return Promise.resolve();
+      }
+    };
+    document.getElementById('demo').classList.remove('hidden');
+  }
+  function chk(r) { if (r && r.error) throw r.error; return r; }
+
+  /* ---------------- utilidades ---------------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function inl(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>').replace(/\n/g, '<br/>'); }
+  function aulasDo(n) { return state.aulas.filter(function (a) { return a.modulo === n; }); }
+  function contaveis() { return state.aulas.filter(function (a) { return a.id !== 'final'; }); }
+  function feitas() { return contaveis().filter(function (a) { return state.feito.has('aula:' + a.id); }).length; }
+  function proxima() { return state.aulas.find(function (a) { return !state.feito.has('aula:' + a.id); }) || state.aulas[0]; }
+  function nomeCurto(t) { return t.replace(/\s*\((segunda|terça|quarta|quinta|sexta)\)$/i, ''); }
+
+  function erroAmigavel(e) {
+    var m = (e && (e.message || e.msg)) || '';
+    if (/NAO_AUTORIZADO|Database error saving new user/i.test(m)) return 'Não encontramos uma compra com esse e-mail. Use exatamente o e-mail informado na compra. Acabou de comprar? Aguarde alguns minutos e tente de novo.';
+    if (/already registered|already been registered/i.test(m)) return 'Você já criou sua senha com esse e-mail. Use a aba "Entrar".';
+    if (/Invalid login credentials/i.test(m)) return 'E-mail ou senha incorretos.';
+    if (/Password should be at least/i.test(m)) return 'A senha precisa ter pelo menos 6 caracteres.';
+    if (/rate limit|too many/i.test(m)) return 'Muitas tentativas. Aguarde alguns minutos e tente de novo.';
+    return 'Não foi possível concluir. Tente de novo em instantes. (' + esc(m) + ')';
+  }
+
+  /* ---------------- telas ---------------- */
+  function telaLogin(aba, aviso) {
+    aba = aba || 'entrar';
+    document.getElementById('nav').classList.add('hidden');
+    $app.innerHTML =
+      '<section class="login"><div class="login-card">' +
+      '<img src="../logo.png" alt=""/>' +
+      '<h1>PROTOCOLO <span>30 DIAS</span><br/>SEM ERRAR</h1>' +
+      '<p class="sub">Área da aluna</p>' +
+      '<div class="tabs"><button data-aba="entrar" class="' + (aba === 'entrar' ? 'on' : '') + '">Entrar</button>' +
+      '<button data-aba="criar" class="' + (aba === 'criar' ? 'on' : '') + '">Primeiro acesso</button></div>' +
+      '<form id="f" novalidate>' +
+      (aba === 'criar' ? '<p class="hint">Comprou agora? Crie sua senha usando <strong>o mesmo e-mail da compra</strong>.</p>' : '') +
+      '<label>E-mail<input id="em" type="email" autocomplete="email" required/></label>' +
+      '<label>' + (aba === 'criar' ? 'Crie uma senha (mínimo 6 caracteres)' : 'Senha') +
+      '<input id="pw" type="password" minlength="6" autocomplete="' + (aba === 'criar' ? 'new-password' : 'current-password') + '" required/></label>' +
+      (aviso ? '<div class="msg err">' + aviso + '</div>' : '') +
+      '<button class="btn" id="go">' + (aba === 'criar' ? 'Criar senha e entrar' : 'Entrar') + '</button>' +
+      '</form>' +
+      '<p class="help">Esqueceu a senha ou não consegue entrar?<br/><a href="' + esc(C.SUPORTE_INSTAGRAM) + '" target="_blank" rel="noopener">Fale com a gente no Direct</a></p>' +
+      '</div></section>';
+
+    $app.querySelectorAll('[data-aba]').forEach(function (b) { b.onclick = function () { telaLogin(b.dataset.aba); }; });
+    document.getElementById('f').onsubmit = function (ev) {
+      ev.preventDefault();
+      var em = document.getElementById('em').value.trim().toLowerCase();
+      var pw = document.getElementById('pw').value;
+      if (!/^\S+@\S+\.\S+$/.test(em)) return telaLogin(aba, 'Digite um e-mail válido.');
+      if (pw.length < 6) return telaLogin(aba, 'A senha precisa ter pelo menos 6 caracteres.');
+      var go = document.getElementById('go'); go.disabled = true; go.textContent = 'Aguarde…';
+      (aba === 'criar' ? api.criar(em, pw) : api.entrar(em, pw))
+        .then(iniciar)
+        .catch(function (e) { telaLogin(aba, erroAmigavel(e)); document.getElementById('em').value = em; });
+    };
+  }
+
+  function telaInicio() {
+    var total = contaveis().length, f = feitas(), pct = total ? Math.round(f / total * 100) : 0, prox = proxima();
+    var diasFeitos = 0; for (var d = 1; d <= 30; d++) if (state.feito.has('dia:' + d)) diasFeitos++;
+    var h = '<section class="hero"><div class="hero-txt">' +
+      '<p class="hello">Olá' + (state.nome ? ', ' + esc(state.nome.split(' ')[0]) : '') + '! 👋</p>' +
+      '<h1>PROTOCOLO<br/><span>30 DIAS</span><br/>SEM ERRAR</h1>' +
+      '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
+      '<p class="bar-label"><b>' + f + ' de ' + total + '</b> aulas concluídas</p>' +
+      '<a class="btn" href="#/aula/' + esc(prox.id) + '">' + (f ? 'Continuar' : 'Começar agora') + ' →</a>' +
+      '</div><img src="../thaise.png" alt="Thaise Lourrane"/></section>';
+
+    h += '<section class="sec"><a class="cal-card" href="#/calendario"><span class="big">' + diasFeitos + '/30</span>' +
+      '<div><h3>Meu calendário</h3><p>Marque cada dia de treino concluído</p></div><span class="arrow">›</span></a></section>';
+
+    h += '<section class="sec"><div class="tag">Conteúdo completo</div><h2>MÓDULOS DO PROGRAMA</h2><div class="mods">';
+    state.modulos.forEach(function (m) {
+      var as = aulasDo(m.numero), ok = as.filter(function (a) { return a.id !== 'final' && state.feito.has('aula:' + a.id); }).length;
+      var n = as.filter(function (a) { return a.id !== 'final'; }).length;
+      var aberto = as.some(function (a) { return a.id === prox.id; });
+      h += '<details class="mod"' + (aberto ? ' open' : '') + '><summary><span class="mod-ic">' + esc(m.icone) + '</span>' +
+        '<span class="mod-info"><span class="mod-label">Módulo ' + m.numero + '</span><br/><span class="mod-title">' + esc(m.titulo) + '</span><br/>' +
+        '<span class="mod-sub">' + esc(m.subtitulo) + '</span></span><span class="mod-count">' + ok + '/' + n + '</span></summary><div class="lessons">';
+      as.forEach(function (a) {
+        var on = state.feito.has('aula:' + a.id);
+        h += '<a class="lesson" href="#/aula/' + esc(a.id) + '"><span class="chk' + (on ? ' on' : '') + '">✓</span><span class="lt">' + esc(nomeCurto(a.titulo)) + '</span><small>›</small></a>';
+      });
+      h += '</div></details>';
+    });
+    h += '</div></section>';
+
+    h += '<section class="sec"><div class="tag">O método</div><h2>OS 3 PILARES DO SEM ERRAR</h2><div class="pillars">' +
+      '<div class="pillar"><b>🎯</b><div><h3>Estratégia</h3><p>Cada exercício tem um propósito. Nada é aleatório.</p></div></div>' +
+      '<div class="pillar"><b>🔄</b><div><h3>Consistência</h3><p>O segredo não é a intensidade, é a regularidade.</p></div></div>' +
+      '<div class="pillar"><b>✨</b><div><h3>Simplicidade</h3><p>Exercícios conhecidos, organizados de forma inteligente.</p></div></div>' +
+      '</div></section>';
+    $app.innerHTML = '<main>' + h + '</main>' + rodape();
+  }
+
+  function bloco(b, i) {
+    switch (b.t) {
+      case 'p': return '<p>' + inl(b.x) + '</p>';
+      case 'nota': return '<div class="note">' + inl(b.x) + '</div>';
+      case 'lista': return '<ul>' + b.itens.map(function (x) { return '<li>' + inl(x) + '</li>'; }).join('') + '</ul>';
+      case 'arquivo': return '<a class="file" href="' + esc(b.href) + '" target="_blank" rel="noopener" download><b>📎</b>' + esc(b.x) + '</a>';
+      case 'tabela':
+        return '<div class="tbl"><table><tr>' + b.cab.map(function (c) { return '<th>' + inl(c) + '</th>'; }).join('') + '</tr>' +
+          b.linhas.map(function (l) { return '<tr>' + l.map(function (c) { return '<td>' + inl(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</table></div>';
+      case 'ex':
+        return '<div class="exs">' + b.itens.map(function (e, k) {
+          return '<div class="ex"><span class="ex-n">' + (k + 1) + '</span><div class="ex-info">' +
+            '<div class="ex-name">' + esc(e.nome) + '</div><div class="ex-sr">' + esc(e.series) + ' séries × ' + esc(e.reps) + '</div>' +
+            (e.alt ? '<div class="ex-alt"><b>Opção iniciante:</b> ' + esc(e.alt) + '</div>' : '') + '</div>' +
+            (e.video ? '<a class="ex-vid" href="' + esc(e.video) + '" target="_blank" rel="noopener" aria-label="Ver vídeo de ' + esc(e.nome) + '">▶</a>'
+                     : '<span class="ex-vid off">vídeo<br/>em breve</span>') + '</div>';
+        }).join('') + '</div>';
+    }
+    return '';
+  }
+
+  function telaAula(id) {
+    var idx = state.aulas.findIndex(function (a) { return a.id === id; });
+    if (idx < 0) { location.hash = '#/'; return; }
+    var a = state.aulas[idx], m = state.modulos.find(function (x) { return x.numero === a.modulo; }) || {};
+    var ant = state.aulas[idx - 1], prox = state.aulas[idx + 1], on = state.feito.has('aula:' + a.id);
+    var h = '<div class="crumb"><a href="#/">← Início</a><span>•</span><span>Módulo ' + a.modulo + ' — ' + esc(m.titulo) + '</span></div>' +
+      '<h1 class="lesson-h1">' + esc(a.titulo) + '</h1><div class="content">' +
+      (m.intro || []).map(bloco).join('') + a.conteudo.map(bloco).join('') + '</div>' +
+      '<div class="lesson-actions"><button class="btn ' + (on ? 'done' : '') + '" id="marca">' + (on ? '✓ Aula concluída' : 'Marcar como concluída') + '</button>' +
+      '<div class="pager">' +
+      (ant ? '<a href="#/aula/' + esc(ant.id) + '">← Anterior<b>' + esc(nomeCurto(ant.titulo)) + '</b></a>' : '<span></span>') +
+      (prox ? '<a class="next" href="#/aula/' + esc(prox.id) + '">Próxima →<b>' + esc(nomeCurto(prox.titulo)) + '</b></a>' : '<a class="next" href="#/">Voltar →<b>Início</b></a>') +
+      '</div></div>';
+    $app.innerHTML = '<main>' + h + '</main>' + rodape();
+    window.scrollTo(0, 0);
+    document.getElementById('marca').onclick = function () {
+      var novo = !state.feito.has('aula:' + a.id);
+      alternar('aula:' + a.id, novo).then(function () {
+        if (novo && prox) location.hash = '#/aula/' + prox.id; else telaAula(id);
+      });
+    };
+  }
+
+  function telaCalendario() {
+    var h = '<div class="crumb"><a href="#/">← Início</a></div><h1 class="lesson-h1">MEU <span style="color:var(--orange)">CALENDÁRIO</span></h1>' +
+      '<p style="color:var(--muted);margin:-8px 0 22px">Toque no dia para marcar o treino como feito. Faltou um dia? Não compense — continue do próximo treino da sequência.</p><div class="weeks">';
+    for (var w = 0; w < 5; w++) {
+      h += '<div class="wk"><h3>' + INFO[w][0] + ' — <span>' + INFO[w][1] + '</span></h3><p>' + INFO[w][2] + '</p><div class="days">';
+      for (var d = 0; d < 7; d++) {
+        var n = w * 7 + d + 1;
+        if (n > 30) { h += '<span></span>'; continue; }
+        var on = state.feito.has('dia:' + n);
+        h += '<button class="day' + (d > 4 ? ' rest' : '') + (on ? ' on' : '') + '" data-dia="' + n + '" aria-pressed="' + on + '">' +
+          '<div class="wd">' + DIAS[d] + '</div><div class="dn">' + n + '</div><div class="tr">' + (on ? '✓' : SEMANA[d]) + '</div></button>';
+      }
+      h += '</div></div>';
+    }
+    h += '</div><p class="legend"><b>T1</b> Inferiores · <b>T2</b> Superiores · <b>T3</b> Glúteos e posterior · <b>T4</b> Superiores · <b>T5</b> Inferiores completo · 🚶 Caminhada leve · — Descanso</p>' +
+      '<div class="sec"><a class="file" href="materiais/Calendario-30-Dias-e-Ficha-de-Registro.pdf" target="_blank" rel="noopener" download><b>📎</b>Baixar calendário + ficha de registro para imprimir (PDF)</a></div>';
+    $app.innerHTML = '<main>' + h + '</main>' + rodape();
+    window.scrollTo(0, 0);
+    $app.querySelectorAll('[data-dia]').forEach(function (b) {
+      b.onclick = function () {
+        var item = 'dia:' + b.dataset.dia, novo = !state.feito.has(item);
+        alternar(item, novo).then(telaCalendario);
+      };
+    });
+  }
+
+  function telaMensagem(titulo, texto, botao) {
+    $app.innerHTML = '<main><div class="center"><h1 class="lesson-h1">' + titulo + '</h1><p>' + texto + '</p>' + (botao || '') + '</div></main>';
+  }
+  function rodape() { return '<footer>Protocolo 30 Dias Sem Errar — Thaise Lourrane • CREF 003962-G/SE<br/>Conteúdo de uso pessoal. Proibida a reprodução.</footer>'; }
+
+  function alternar(item, on) {
+    if (on) state.feito.add(item); else state.feito.delete(item);
+    return api.marcar(item, on).catch(function () {
+      if (on) state.feito.delete(item); else state.feito.add(item);
+      alert('Não foi possível salvar. Verifique sua internet e tente de novo.');
+    });
+  }
+
+  /* ---------------- rotas ---------------- */
+  function rota() {
+    if (!state.user) return;
+    var r = location.hash.replace(/^#\/?/, '');
+    document.querySelectorAll('#nav [data-r]').forEach(function (a) {
+      a.classList.toggle('on', (r === '' && a.dataset.r === 'inicio') || r === a.dataset.r);
+    });
+    if (r.indexOf('aula/') === 0) telaAula(decodeURIComponent(r.slice(5)));
+    else if (r === 'calendario') telaCalendario();
+    else telaInicio();
+  }
+
+  function iniciar() {
+    $app.innerHTML = '<div class="center"><div class="spinner"></div></div>';
+    return api.sessao().then(function (u) {
+      if (!u) return telaLogin();
+      state.user = u;
+      return api.conteudo().then(function (d) {
+        state.modulos = d.modulos; state.aulas = d.aulas; state.feito = new Set(d.feito); state.nome = d.nome || '';
+        document.getElementById('nav').classList.remove('hidden');
+        if (!state.aulas.length) {
+          return telaMensagem('ACESSO <span style="color:var(--orange)">INATIVO</span>',
+            'Não encontramos uma compra ativa para este e-mail. Se você acabou de comprar, aguarde alguns minutos e atualize a página. Se pediu reembolso, o acesso foi encerrado.',
+            '<a class="btn" href="' + esc(C.SUPORTE_INSTAGRAM) + '" target="_blank" rel="noopener">Falar com a gente</a>');
+        }
+        rota();
+      });
+    }).catch(function (e) {
+      if (e && e.message === 'NAO_CONFIGURADO') return telaMensagem('EM <span style="color:var(--orange)">MANUTENÇÃO</span>', 'A área da aluna está sendo configurada. Volte em instantes.');
+      telaMensagem('OPS!', 'Não foi possível carregar o conteúdo. Verifique sua internet e atualize a página.', '<button class="btn" onclick="location.reload()">Tentar de novo</button>');
+    });
+  }
+
+  document.getElementById('sair').onclick = function () {
+    api.sair().then(function () { state.user = null; location.hash = '#/'; telaLogin(); });
+  };
+  window.addEventListener('hashchange', rota);
+  iniciar();
+})();
+</script>
+</body>
+</html>
